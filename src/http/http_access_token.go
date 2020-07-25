@@ -13,17 +13,17 @@ type AccessTokenHandler interface {
 	GetById(*gin.Context)
 }
 
-type accesstokenHandler struct{
+type accessTokenHandler struct{
 	service access_token.Service
 }
 
 func NewHandler(service access_token.Service) AccessTokenHandler {
-	return &accesstokenHandler {
+	return &accessTokenHandler {
               service: service,
 	}
 }
 
-func (h *accesstokenHandler) GetById(c *gin.Context)  {
+func (h *accessTokenHandler) GetById(c *gin.Context)  {
 	accessToken, err:= h.service.GetById(c.Param("access_token_id"))
 	if err != nil{
 		c.JSON(err.Status,err) 
